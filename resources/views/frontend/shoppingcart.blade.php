@@ -14,7 +14,7 @@
     <!-- Shopping Cart Div -->
     <div class="row mt-5 shoppingcart_div">
       <div class="col-12">
-        <a href="categories" class="btn mainfullbtncolor btn-secondary float-right px-3" > 
+        <a href="{{route('homepage')}}" class="btn mainfullbtncolor btn-secondary float-right px-3" > 
           <i class="icofont-shopping-cart"></i>
           Continue Shopping 
         </a>
@@ -44,10 +44,10 @@
             </tr>
             <tr> 
               <td colspan="5"> 
-                <textarea class="form-control" id="notes" placeholder="Any Request..."></textarea>
+                <textarea class="form-control note" id="notes" placeholder="Any Request..."></textarea>
               </td>
               <td colspan="3">
-                <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn"> 
+                <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn buy_now"> 
                   Check Out 
                 </button>
               </td>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="col-12 mt-5 ">
-        <a href="categories" class="btn btn-secondary mainfullbtncolor px-3" > 
+        <a href="{{route('homepage')}}" class="btn btn-secondary mainfullbtncolor px-3" > 
           <i class="icofont-shopping-cart"></i>
           Continue Shopping 
         </a>

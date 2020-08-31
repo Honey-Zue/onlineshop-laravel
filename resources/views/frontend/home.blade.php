@@ -133,7 +133,7 @@
                   </ul>
                 </div>
 
-                <a href="#" class="addtocartBtn text-decoration-none btn_add_to_cart" data-id = '{{$item->id}}' data-name = '{{$item->name}}' data-photo = '{{$item->photo}}' data-price= '{{$item->price}}' data-discount = '{{$item->discount}}'>Add to Cart</a>
+                <a href="javascript:void(0)" class="addtocartBtn text-decoration-none btn_add_to_cart" data-id = '{{$item->id}}' data-name = '{{$item->name}}' data-photo = '{{$item->photo}}' data-price= '{{$item->price}}' data-discount = '{{$item->discount}}'>Add to Cart</a>
 
                         </div>
                     </div>

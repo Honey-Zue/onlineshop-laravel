@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content=""/>
   <meta name="author" content="" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title> Shopules </title>
 
@@ -92,15 +93,11 @@
 
         <a href="{{route('shoppingcartpage')}}" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
           <i class="icofont-shopping-cart"></i> 
-          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
+          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 0 </span>
           <span class="price">  </span>
         </a>
 
-        <a href="" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
-          <i class="icofont-shopping-cart"></i>
-          <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
-        </a>
-
+    
         <!-- App Download -->
 
         <a href=""><img src="{{ asset('frontend/image/download.png')}}" class="img-fluid d-xl-inline d-lg-inline d-md-none d-sm-none d-none" style="width: 150px"></a>
@@ -382,7 +379,7 @@
       </div>
 
       <div class="col-3">
-        <a href="" class="text-decoration-none text-dark font-weight-bold"> Promotions </a>
+        <a href="{{route('promotionspage')}}" class="text-decoration-none text-dark font-weight-bold"> Promotions </a>
       </div>
       <div class="col-3">
         <div class="hov-dropdown d-inline-block">
@@ -503,7 +500,7 @@
       </div>
       <hr>
 
-      <a href="#"> Login | Signup</a>
+      <a href="{{route('loginpage')}}"> Login | Signup</a>
       <hr>
 
       <a href="#"> Cart [ <span class="cartNoti"> 1 </span> ]  </a>

@@ -4,6 +4,17 @@
 // id / name /photo 
 $(document).ready(function(){
 	// alert('hi');
+
+
+	// to use ajax post method we need ajaxsetup and meta tag
+
+	$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    }
+	});
+
+
 	showcart();
 	cartnoti()
 	$('.btn_add_to_cart').click(function(){
@@ -107,6 +118,9 @@ $(document).ready(function(){
 			})
 			html+= `<h3 class="text-right"> Total : ${total} Ks </h3>`
 			$('#shoppingcart_table').html(html);
+		}else{
+			$('#shoppingcart_table').html('');
+
 		}
 	}
 
@@ -202,9 +216,28 @@ $(document).ready(function(){
 			var totalprice = total+' ks';
 			$('.cartNoti').html(cart);
 			$('.price').html(totalprice);
+		}else{
+			var totalprice = 0 + " ks"
+			$('.cartNoti').html(0);
+			$('.price').html(totalprice);
 		}
 
 	}
+
+
+	$('.buy_now').click(function(){
+		var note = $('.note').val();
+		var mycart = localStorage.getItem('cart');
+		if(mycart){
+			$.post('/orders',{mycart:mycart,note:note},function(res){
+				alert(res);
+				localStorage.clear();
+				showcart();
+
+
+			})
+		}
+	})
 
 
 
