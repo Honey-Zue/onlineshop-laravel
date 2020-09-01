@@ -66,3 +66,9 @@ create - show form , store data
 retrieve - display data (all , row)
 update - show form with old value , update data
 delete - delete data
+
+
+
+
+
+php artisan key:generate

@@ -31,12 +31,13 @@ Route::get('filteritems','PageController@filteritems')->name('filteritemspage');
 
 Route::get('shoppingcart','PageController@shoppingcart')->name('shoppingcartpage');
 
-Route::get('login','PageController@login')->name('loginpage');
+Route::get('loginpage','PageController@login')->name('loginpage');
 
 Route::get('register','PageController@register')->name('registerpage');
 
 // Backend
-
+Route::middleware('role:Admin')->group(function () {
+	
 Route::get('dashboard','BackendController@dashboardfun')->name('dashboardpage');
 
 Route::resource('items','ItemController');
@@ -45,6 +46,10 @@ Route::resource('categories','CategoryController');
 Route::resource('subcategories','SubcategoryController');
 Route::resource('subcategories','SubcategoryController');
 Route::resource('orders','OrderController');
+});
 
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -31,7 +31,7 @@
     					<td>{{$order->user->name}}</td>
     					<td>{{$order->total}} MMK</td>
     					<td>
-    						<a href="#" class="btn btn-primary">Detail</a>
+    						<a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">Detail</a>
     						<a href="#" class="btn btn-warning">Edit</a>
                             <a href="#" class="btn btn-success">Confirm</a>
 
