@@ -47,9 +47,21 @@
                 <textarea class="form-control note" id="notes" placeholder="Any Request..."></textarea>
               </td>
               <td colspan="3">
+
+                @role('Customer')
                 <button class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn buy_now"> 
                   Check Out 
                 </button>
+                @else
+
+                <a href="{{route('loginpage')}}" class="btn btn-secondary btn-block mainfullbtncolor checkoutbtn buy_now"> 
+                  Login To Check Out
+                </a>
+
+                @endrole
+
+
+
               </td>
             </tr>
           </tfoot>
@@ -61,7 +73,7 @@
     <div class="row mt-5 noneshoppingcart_div text-center">
       
       <div class="col-12">
-        <h5 class="text-center"> There are no items in this cart </h5>
+        <h5 class="text-center cart_view">  </h5>
       </div>
 
       <div class="col-12 mt-5 ">

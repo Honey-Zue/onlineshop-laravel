@@ -72,3 +72,18 @@ delete - delete data
 
 
 php artisan key:generate
+
+
+php artisan make:model Order
+php artisan make:migration create_order_detail_table
+
+
+
+
+
+
+
+
+
+
+

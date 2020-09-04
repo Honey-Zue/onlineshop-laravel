@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Admin')->only('index','show');
+        $this->middleware('role:Customer')->only('store','order_history');
+
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('id','DESC')->get();
         return view('backend.order.orderlist',compact('orders'));
     }
 
@@ -50,12 +58,12 @@ class OrderController extends Controller
         $order->orderdate = date('Y-m-d');
         $order->note = $request->note;
         $order->total=$total;
-        $order->user_id = 1;
+        $order->user_id =Auth::id();
         $order->save();
 
-        foreach ($mycartArr as $row) {
-            $order->items()->attach($row->id,['qty'=>$row->qty]);
-        }
+foreach ($mycartArr as $row) {
+    $order->items()->attach($row->id,['qty'=>$row->qty]);
+}
         return "Order Success!!";
 
     }
@@ -105,5 +113,25 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function order_history()
+    {
+        $user_id = Auth::id();
+        $orders = Order::where('user_id',$user_id)->orderBy('id','DESC')->get();
+        return view('frontend.order_history',compact('orders'));
+    }
+
+    public function order_search(Request $request)
+    {
+        $order_list = Order::whereBetween('orderdate',[$request->startdate,$request->enddate])->get();
+        $order_pivot = array();
+        $user = array();
+        foreach ($order_list as $value) {
+           $order_pivot = $value->items;
+           $order_user = $value->user;
+        }
+        return $order_list;
+       
     }
 }

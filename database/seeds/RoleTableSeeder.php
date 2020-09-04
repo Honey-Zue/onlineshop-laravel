@@ -21,3 +21,6 @@ class RoleTableSeeder extends Seeder
       $role2->save();
     }
 }
+
+
+// php artisan make:seeder RoleTableSeeder

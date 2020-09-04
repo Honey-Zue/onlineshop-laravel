@@ -4,39 +4,72 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Brand;
+use App\Subcategory;
+use App\Category;
 
 class PageController extends Controller
 {
   public function home($value='')
   {
     $items = Item::all()->take(6);
-    // dd($items);
-    return view('frontend.home',compact('items'));
+    $brands = Brand::all();
+    return view('frontend.home',compact('items','brands'));
   }
 
-  public function itemdetail($value='')
+  public function itemdetail($id)
   {
-    return view('frontend.detail');
+    $itemdetail = Item::find($id);
+    $brand_id = $itemdetail->brand_id;
+    $subcategory_id = $itemdetail->subcategory_id;
+    // relate item
+
+    // where two ku mot lo array nat sis pay lo ya tal
+    $relate_items = Item::where(['brand_id'=>$brand_id,'subcategory_id'=>$subcategory_id])->get();
+    // dd($relate_item);
+    return view('frontend.detail',compact('itemdetail','relate_items'));
   }
 
   public function promotions($value='')
   {
-    return view('frontend.promotions');
+    $items = Item::where('discount' ,'>', 0)->get();
+    
+    return view('frontend.promotions',compact('items'));
   }
 
-  public function filteritems($value='')
+  public function filteritems($id)
   {
-    return view('frontend.filteritems');
+    $item_subcategories = Subcategory::find($id);
+    $categories = Category::all();
+    return view('frontend.filteritems',compact('item_subcategories','categories'));
   }
+
+
+  public function filterwithcategory(Request $request)
+  {
+    $category = Category::find($request->id);
+    // $category = DB::table('items')
+    //           ->join('subcategories',)
+    $items = array();
+    foreach ($category->subcategories as $value) {
+      $items = $value->items;
+    }
+    // dd($items)
+    return $category;
+  }
+
+
 
   public function shoppingcart($value='')
   {
     return view('frontend.shoppingcart');
   }
 
-  public function itemsbybrand($value='')
+  public function itemsbybrand($id)
   {
-    return view('frontend.itemsbybrand');
+    $brand = Brand::find($id);
+
+    return view('frontend.itemsbybrand',compact('brand'));
   }
 
   public function login($value='')

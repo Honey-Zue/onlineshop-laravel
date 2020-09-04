@@ -21,19 +21,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','PageController@home')->name('homepage');
 
-Route::get('detail','PageController@itemdetail')->name('itemdetailpage');
+Route::get('detail/{id}','PageController@itemdetail')->name('itemdetailpage');
 
 Route::get('promotions','PageController@promotions')->name('promotionspage');
 
-Route::get('itemsbybrand','PageController@itemsbybrand')->name('itemsbybrandpage');
+Route::get('itemsbybrand/{id}','PageController@itemsbybrand')->name('itemsbybrandpage');
 
-Route::get('filteritems','PageController@filteritems')->name('filteritemspage');
+Route::get('filteritems/{id}','PageController@filteritems')->name('filteritemspage');
+
+Route::post('filterwithcategory','PageController@filterwithcategory')->name('filterwithcategory');
+
 
 Route::get('shoppingcart','PageController@shoppingcart')->name('shoppingcartpage');
 
 Route::get('loginpage','PageController@login')->name('loginpage');
 
-Route::get('register','PageController@register')->name('registerpage');
+Route::get('registerpage','PageController@register')->name('registerpage');
 
 // Backend
 Route::middleware('role:Admin')->group(function () {
@@ -45,8 +48,13 @@ Route::resource('brands','BrandController');
 Route::resource('categories','CategoryController');
 Route::resource('subcategories','SubcategoryController');
 Route::resource('subcategories','SubcategoryController');
-Route::resource('orders','OrderController');
 });
+
+
+Route::resource('orders','OrderController');
+Route::get('order_detail','OrderController@order_history')->name('order_detail');
+Route::post('order_search','OrderController@order_search')->name('order_search');
+
 
 
 
