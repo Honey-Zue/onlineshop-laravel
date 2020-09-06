@@ -30,13 +30,13 @@
                         <td>{{$subcategory->category->name}}</td>            
                         <td>
                             
-                            <a href="{{route('subcategories.edit',$subcategory->id)}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('subcategories.edit',$subcategory->id)}}" class="btn btn-outline-warning">Edit</i></a>
 
                             <form action="{{route('items.destroy',$subcategory->id)}}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <!-- delete lote yin method ka post nat ma ya buu dar kout method ko delete so pe change pay ya mal update lo myoe pot -->
-                                <button class="btn btn-outline-danger "><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-outline-danger ">Delete</button>
                             </form>
                         </td>            
 

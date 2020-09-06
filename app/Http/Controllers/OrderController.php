@@ -112,7 +112,7 @@ foreach ($mycartArr as $row) {
      */
     public function destroy($id)
     {
-        //
+
     }
 
     public function order_history()

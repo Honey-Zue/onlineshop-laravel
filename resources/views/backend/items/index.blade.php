@@ -31,14 +31,14 @@
     					<td>{{$item->name}}</td>
     					<td>{{$item->price}} MMK</td>
     					<td>
-    						<a href="#" class="btn btn-outline-primary"><i class="fas fa-info"></i></a>
-    						<a href="{{route('items.edit',$item->id)}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+    						<a href="{{route('items.show',$item->id)}}" class="btn btn-outline-primary">Detail</a>
+    						<a href="{{route('items.edit',$item->id)}}" class="btn btn-outline-warning">Edit</i></a>
     						<!-- delete function ko write yin form ko use y a tal -->
                            <form action="{{route('items.destroy',$item->id)}}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <!-- delete lote yin method ka post nat ma ya buu dar kout method ko delete so pe change pay ya mal update lo myoe pot -->
-                                <button class="btn btn-outline-danger "><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-outline-danger ">Delete</button>
                             </form>
     					</td>
     				</tr>

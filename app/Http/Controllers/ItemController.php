@@ -88,7 +88,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        
+        return view('backend.items.show',compact('item'));
     }
 
     /**
